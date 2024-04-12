@@ -1,0 +1,24 @@
+body {background-color: coral;}
+
+div {
+    background-color: white;
+}
+
+/* Testing teh rought code */
+
+#rocketContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #rocket {
+    position: absolute;
+    top: 50%;
+    left: -100px;
+    transition: all 2s ease-in-out;
+  }
+  
+  #inputContainer {
+    margin-top: 20px;
+  }
