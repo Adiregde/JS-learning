@@ -9,75 +9,136 @@
 */
 
 
-// function x(){
-//     var a=10;
-//     function y(){
-//         //console.log(a)
-//     }
-// y();
-// }
-// x();
-// // console.log('testing correct')
+console.log('Yes the code is working');
 
 
-// const num = [1,2,3,4,5,6,7,8,9,10];
+function outerFunction() {
+  let outerVariable = 'I am outer';
 
-// const sumarr = num.filter( (num) => {
-//     return num > 4
-// })
+  function innerFunction() {
+    console.log(outerVariable); // Inner function has access to outerVariable
+  }
 
-// console.log(sumarr);
-
-
-//new method
-
-// const sum = ['iron man', 'superman', 'captain', 'sheild', 'thor'];
-
-// let ans = sum.filter( (sum) => {
-//     if(sum.includes('man')){
-//         // console.log('11111111');
-//         return sum;
-//     }
-// })
-// console.log(ans);
-
-// const connect = document.getElementById('heading').innerHTML = 'Yes correct done';
-// connect.style.background = red;
-
-let addnum = document.querySelector('myButton').onclick = function(){
-    let n1 = document.getElementById('testing1').innerText = 'clicked me yes';
-    console.log('yes its correct');
-}	
-
-
-const ans = document.getElementById("p1").innerHTML = "New text!";
-
-const clock = document.getElementById('clock');
-// const clock = document.querySelector('#clock')
-
-setInterval(function () {
-  let date = new Date();
-  // console.log(date.toLocaleTimeString());
-  clock.innerHTML = date.toLocaleTimeString();
-}, 1000);
-
-
-alert('Yes we are in');
-
-
-// Testing the rough code in JS
-
-function startRocket() {
-  var speedInput = document.getElementById('speedInput');
-  var rocket = document.getElementById('rocket');
-
-  var speed = parseInt(speedInput.value, 10) || 1; // Get input value and fallback to 1 if non-numeric.
-
-  rocket.style.left = "100%"; // Move the rocket to the right side of the screen.
-
-  setTimeout(function() {
-    rocket.style.left = "-100px"; // Move the rocket back to the left side of the screen.
-  }, speed * 1000); // Convert speed to milliseconds.
-
-  speedInput.value = ""; // Clear input value after starting.
+  return innerFunction; // Return innerFunction, capturing outerVariable
 }
+
+// Calling outerFunction returns innerFunction
+let closureExample = outerFunction();
+
+// Even though outerFunction has finished executing, innerFunction still has access to outerVariable
+closureExample(); // Output: I am outer
+
+
+let con = 'Aditya Vinod regde';
+let ans = con.toUpperCase();
+
+console.log(ans);
+
+// const contact = document.getElementById('intext').innerHTML = 'Yes the content is correct';
+
+// let answer = contact.toUpperCase();
+
+
+const person = {
+  fullName: function(city, country) {
+    return this.firstName + " " + this.lastName + "," + city + "," + country;
+  }
+}
+
+const person1 = {
+  firstName:"John",
+  lastName: "Doe"
+}
+
+const person2 = {
+  firstName:"Mary",
+  lastName: "Doe"
+}
+
+// console.log(person.fullName.call(person1, "Oslo", "Norway")) 
+console.log(person.fullName.apply(person1, ["Oslo", "Norway"])) 
+console.log(person.fullName.call(person2, ["Oslo", "Norway"])) 
+
+
+
+
+
+let summ = Math.max(20,55,85,956,74,852,1000,555);
+
+console.log(summ);
+
+console.log(Math.max.apply(null, [1,2,3]));
+console.log(Math.max.apply(Math, [1,5,9,88,207,3]));
+
+
+
+
+
+
+
+// Function Borrowing
+// With the bind() method, an object can borrow a method from another object.
+
+
+const persons = {
+  firstName:"John",
+  lastName: "Doe",
+  fullName: function () {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const member = {
+  firstName:"Hege",
+  lastName: "Nilsen",
+}
+
+let fullName = persons.fullName.bind(member);
+console.log(fullName());
+
+// other expmple
+
+
+
+const personans = {
+  firstName:"John",
+  lastName: "Doe",
+  display: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+let display = personans.display.bind(personans);
+setTimeout(display, 3000)
+
+
+function myFunction() {
+  let a = 4;
+  let aa = a * a;
+  console.log(aa);
+}
+
+// A closure is a function having access to the parent scope, even after the parent function has closed.
+
+// JavaScript has a built in function for converting JSON strings into JavaScript objects:
+
+// JSON.parse()
+
+// JavaScript also has a built in function for converting an object into a JSON string:
+
+// JSON.stringify()
+
+// Convert a JavaScript object into a string with JSON.stringify().
+
+const obj = {name: "John", age: 30, city: "New York"};
+const arr = ["John", "Peter", "Sally", "Jane"];
+const myJSON = JSON.stringify(obj);
+const myJSON1 = JSON.stringify(arr);
+console.log(myJSON, myJSON1);
+
+
+let x= 110;
+let y;
+let z = x+ y;
+console.log(z);
+y= 15;
